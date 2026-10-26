@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: careertrack-frontend
+  namespace: careertrack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: careertrack-frontend
+  template:
+    metadata:
+      labels:
+        app: careertrack-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: sachinrh18/careertrack-frontend:1.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              memory: 128Mi
